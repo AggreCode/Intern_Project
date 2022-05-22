@@ -19,7 +19,7 @@ public class Client {
     @NotBlank(message = "Name is mandatory")
     private String client_name;
     @NotBlank(message = "phone is mandatory")
-
+    @Pattern(regexp = "^/[0-9]{10}$",message = "invalid phoneno")
     private String phone;
     @NotBlank(message = "Email is mandatory")
     @Email(message = "email field is not correct")
