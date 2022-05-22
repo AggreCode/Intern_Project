@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Intern_Project.iml" filepath="$PROJECT_DIR$/.idea/Intern_Project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/Message_API.iml" filepath="$PROJECT_DIR$/spring-boot/Message_API.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Message_API/Message-API.iml" filepath="$PROJECT_DIR$/Message_API/Message-API.iml" />
     </modules>
   </component>
 </project>

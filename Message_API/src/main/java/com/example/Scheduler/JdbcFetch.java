@@ -1,8 +1,10 @@
-package com.example.MessageAPI;
+package com.example.Scheduler;
 
+import com.example.Entity.Message;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +15,13 @@ import java.util.logging.Logger;
 
 public class JdbcFetch {
 
-
-//    public JdbcFetch() {
-//    }@
-
-
     List<Message> FetchData(){
-        String url = "jdbc:mysql://localhost:3306/springboot?useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/messageApi_db?useSSL=false";
         String user = "root";
         String password = "Biswa@123";
 
 
-        String query = "select * from message where status =0;";
+        String query = "select * from message";
        List<Message> messages=new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(query);
@@ -33,11 +30,16 @@ public class JdbcFetch {
 
             while (rs.next()) {
                 Message message = new Message();
-                message.setId(rs.getInt(1));
+                message.setClient_id(rs.getInt("client_id"));
                 message.setMsg(rs.getString(2));
-                message.setDelay(rs.getTime(3).toLocalTime());
-                message.setStatus(rs.getInt(4));
-                messages.add(message);
+                message.setSending_time(rs.getObject(3, LocalDateTime.class));
+                message.setMsg_id(rs.getInt(1));
+                message.setReceiver_phoneno(rs.getString(5));
+                message.setStatus_id(rs.getInt(6));
+                message.setSent_time(rs.getObject(7,LocalDateTime.class));
+                message.setGupshup_api_id(rs.getString(8));
+             messages.add(message);
+
             }
 
 

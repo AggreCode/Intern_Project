@@ -1,8 +1,11 @@
-package com.example.MessageAPI;
+package com.example.Scheduler;
 
+import com.example.Entity.Message;
+import com.example.Scheduler.JdbcFetch;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -67,7 +71,7 @@ class Producer extends Thread{
 
 }
 @Component
-class Consumer extends  Thread{
+class messageConsumer extends  Thread{
    @Autowired
     private  BlockingQueue Queue;
     @Autowired
@@ -76,11 +80,8 @@ class Consumer extends  Thread{
     RestTemplate restTemplate;
 
 
-    //    Consumer(BlockingQueue q){
-//        queue=q;
-//    }
-    @Autowired
-  private Message msg ;
+
+  private Message msg  ;
     public void run(){
         while(true){
 
@@ -130,6 +131,8 @@ public class messageScheduler implements CommandLineRunner{
 
 
 
+
+
     @Autowired
     private JdbcFetch loader;
 
@@ -138,7 +141,7 @@ public class messageScheduler implements CommandLineRunner{
     void Scheduler( ){
 
        new Producer(Queue,loader).start();
-       new Consumer().start();
+//       new messageConsumer().start();
    }
 
 
