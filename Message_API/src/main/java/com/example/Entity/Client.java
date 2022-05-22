@@ -1,18 +1,29 @@
 package com.example.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import java.util.List;
 
 
 @Entity
 public class Client {
     @Id
-
     private Integer  client_id;
+    @NotBlank(message = "Username is mandatory")
     private String username;
+    @NotBlank(message = "Password is mandatory")
     private String password;
+    @NotBlank(message = "Name is mandatory")
     private String client_name;
+    @NotBlank(message = "phone is mandatory")
+
     private String phone;
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "email field is not correct")
+    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String email_id;
 
 
