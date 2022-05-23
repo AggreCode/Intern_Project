@@ -1,11 +1,15 @@
 package com.example.Entity;
 
+import com.example.Validator.ValidPassword;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -15,16 +19,18 @@ public class Client {
     @NotBlank(message = "Username is mandatory")
     private String username;
     @NotBlank(message = "Password is mandatory")
+    @ValidPassword
     private String password;
     @NotBlank(message = "Name is mandatory")
     private String client_name;
     @NotBlank(message = "phone is mandatory")
-    @Pattern(regexp = "^/[0-9]{10}$",message = "invalid phoneno")
+    @Pattern(regexp = "^[6789]\\d{9}$",message = "invalid phoneno")
     private String phone;
     @NotBlank(message = "Email is mandatory")
     @Email(message = "email field is not correct")
     @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String email_id;
+
 
 
 
@@ -39,6 +45,8 @@ public class Client {
         this.phone = phone;
         this.email_id = email_id;
     }
+
+
 
     public Integer getClient_id() {
         return client_id;
