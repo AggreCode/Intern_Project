@@ -37,10 +37,10 @@ public class Application  {
 		return new RestTemplate();
 	}
 
-//	@Bean
-//	public Message msg(){
-//		return new Message();
-//	}
+	@Bean
+	public Message msg(){
+		return new Message();
+	}
 
 
 };

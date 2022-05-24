@@ -21,7 +21,7 @@ public class JdbcFetch {
         String password = "Biswa@123";
 
 
-        String query = "select * from message";
+        String query = "select * from message m where m.status_id= 0";
        List<Message> messages=new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(query);

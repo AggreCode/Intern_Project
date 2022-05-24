@@ -1,6 +1,7 @@
 package com.example.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -9,25 +10,30 @@ import java.time.LocalTime;
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer msg_id;
 
+
+    @NotBlank(message = "please write the message")
     private String msg;
 
-
+    @NotBlank(message = "please mention the time at which you want to send the message")
     private LocalDateTime sending_time;
 
-    @OneToOne(targetEntity = Client.class)
-    @JoinColumn(referencedColumnName = "client_id")
+
     private Integer client_id;
+
+
+
 
     private String receiver_phoneno;
 
 
 
-    @OneToOne(targetEntity = Status.class)
-    @JoinColumn(referencedColumnName= "status_id")
+
     private Integer status_id;
+
+
+
 
     private String gupshup_api_id;
 

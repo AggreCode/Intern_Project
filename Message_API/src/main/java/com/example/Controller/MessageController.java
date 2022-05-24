@@ -15,7 +15,7 @@ public class MessageController {
     @Autowired
     private messageService service;
 
-    @GetMapping("/messages")
+    @GetMapping("/api/messages")
     public List<Message> getAll(){
         return service.listAll();
     }
@@ -23,6 +23,7 @@ public class MessageController {
     public void post(@RequestBody List<Message> messages){
         service.save(messages);
     }
+
 
 
 }
