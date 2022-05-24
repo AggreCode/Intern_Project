@@ -1,7 +1,10 @@
 package com.example.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -10,21 +13,23 @@ import java.time.LocalTime;
 public class Message {
 
     @Id
+    @NotNull(message = "id is absent")
     private  Integer msg_id;
 
 
     @NotBlank(message = "please write the message")
     private String msg;
 
-    @NotBlank(message = "please mention the time at which you want to send the message")
+    @NotNull(message = "please mention the time at which you want to send the message")
     private LocalDateTime sending_time;
 
-
+    @NotNull(message = "please mention your client_id")
     private Integer client_id;
 
 
 
-
+    @NotBlank(message = "please mention the receiver phone no with country code")
+    @Pattern(regexp = "^[6789]\\d{9}$",message = "invalid phoneno")
     private String receiver_phoneno;
 
 

@@ -20,9 +20,7 @@ public class clientService  implements  UserDetailsService{
     private clientRepository clientRepo;
 
 
-    public Optional<Client> findById(Integer client_id){
-        return clientRepo.findById(client_id);
-    }
+
     public Client findByUsername(String username){
         return clientRepo.findByUsername(username);
     }
@@ -38,6 +36,12 @@ public class clientService  implements  UserDetailsService{
     public List<Client> listAll(){
         return clientRepo.findAll();
     }
+
+    public Boolean findById(Integer id){
+        Optional<Client> client=clientRepo.findById(id);
+        return client.isPresent();
+    }
+
 
     @Override
 

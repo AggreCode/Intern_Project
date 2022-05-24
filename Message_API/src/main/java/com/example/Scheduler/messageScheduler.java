@@ -163,7 +163,7 @@ class messageConsumer extends  Thread{
 
                 body.put("channel", "whatsapp");
                 body.put("source", "917834811114");
-                body.put("destination", msg.getReceiver_phoneno());
+                body.put("destination", "91"+msg.getReceiver_phoneno());
                 body.put("message", jsonObject);
                 body.put("src.name", "TestWPIntern");
                 outputStream.write(getParamsByte(body));

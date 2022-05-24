@@ -15,7 +15,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "com.example.Auth","com.example.Controller","com.example.Entity","com.example.Repository",
+@ComponentScan(basePackages = { "com.example.Controller","com.example.Entity","com.example.Repository",
 		"com.example.Scheduler","com.example.Service","com.example.ErrorHandler","com.example.Validator","com.example.Security"} )
 
 public class Application  {

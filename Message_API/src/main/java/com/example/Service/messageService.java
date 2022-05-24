@@ -21,8 +21,8 @@ public class messageService {
     }
 
 
-    public void save(List<Message> messages) {
-        repo.saveAll(messages);
+    public void save(Message message) {
+        repo.save(message);
     }
 
     public void updateStatus(Integer msg_id, Integer status_id, LocalDateTime sent_time, String messageId){  repo.updateStatus(msg_id,status_id,sent_time,messageId); };;
