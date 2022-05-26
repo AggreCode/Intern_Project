@@ -1,12 +1,10 @@
 package com.example.Entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "message")
@@ -27,13 +25,11 @@ public class Message {
 
 
 
-    @NotBlank(message = "please mention the receiver phone no with country code")
+    @NotBlank(message = "please mention the receiver phone no")
     @Pattern(regexp = "^[6789]\\d{9}$",message = "invalid phoneno")
     private String receiver_phoneno;
 
-    @OneToOne(targetEntity = Status.class)
-    @JoinColumn(name = "status_id", referencedColumnName = "status_id")
-    private Integer status_id;
+      private Integer status_id;
     private String gupshup_api_id;
 
     private LocalDateTime sent_time;

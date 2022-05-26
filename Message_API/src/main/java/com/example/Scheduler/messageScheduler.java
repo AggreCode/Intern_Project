@@ -20,6 +20,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,12 +43,13 @@ class Producer extends Thread{
         while(true){
             produce();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
     }
+
 
     private void produce() {
         try {
@@ -53,7 +57,7 @@ class Producer extends Thread{
            for(Message msg:messages) {
                Queue.put(msg);
                System.out.println(msg.getMsg() + " Produced");
-               Thread.sleep(5000);
+               Thread.sleep(1000);
            }
 
         }

@@ -32,8 +32,15 @@ public class MessageController {
     @PostMapping("/api/messages")
     public ResponseEntity post(@Valid @RequestBody HashMap<String,String> req){
          Message msg = new Message();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime date = LocalDateTime.parse(req.get("sending_time"),formatter);
+        LocalDateTime date;
+         try {
+             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+             date = LocalDateTime.parse(req.get("sending_time"), formatter);
+         }
+         catch (Exception e){
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid date time format");
+         }
+
         Integer c_id = Integer.valueOf(req.get("client_id"));
 
         if(date.isBefore(LocalDateTime.now())||date.equals(LocalDateTime.now()))
@@ -48,7 +55,7 @@ public class MessageController {
          msg.setReceiver_phoneno(req.get("receiver_phoneno"));
          msg.setSending_time(date);
          msg.setClient_id(c_id);
-         msg.setStatus_id(Integer.valueOf(req.get("status_id")));
+         msg.setStatus_id(0);
 
         service.save(msg);
 

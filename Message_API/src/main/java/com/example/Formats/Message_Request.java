@@ -23,6 +23,17 @@ public class Message_Request {
 
     }
 
+    @Override
+    public String toString() {
+        return "Message_Request{" +
+                "msg_id='" + msg_id + '\'' +
+                ", msg='" + msg + '\'' +
+                ", sending_time='" + sending_time + '\'' +
+                ", client_id='" + client_id + '\'' +
+                ", receiver_phoneno='" + receiver_phoneno + '\'' +
+                '}';
+    }
+
     public Message_Request() {
     }
 
