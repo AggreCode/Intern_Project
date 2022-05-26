@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Status {
 
     @Id
-
+    @Column(name = "status_id")
     private Integer status_id;
     private  String description;
 

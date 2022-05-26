@@ -48,7 +48,7 @@ public class MessageController {
          msg.setReceiver_phoneno(req.get("receiver_phoneno"));
          msg.setSending_time(date);
          msg.setClient_id(c_id);
-         msg.setStatus_id(0);
+         msg.setStatus_id(Integer.valueOf(req.get("status_id")));
 
         service.save(msg);
 

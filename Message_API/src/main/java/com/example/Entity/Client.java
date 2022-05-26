@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 public class Client {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer  client_id;
     @NotBlank(message = "Username is mandatory")
     private String username;

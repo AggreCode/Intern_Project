@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 @Service
 @Transactional
@@ -29,8 +31,6 @@ public class clientService  implements  UserDetailsService{
     public  void save(Client client) {
 
             clientRepo.save(client);
-
-
     }
 
     public List<Client> listAll(){

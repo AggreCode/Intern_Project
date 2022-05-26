@@ -28,20 +28,13 @@ import java.util.concurrent.TimeUnit;
 
 
 class Producer extends Thread{
-
-    public Producer() {
-    }
-
     private BlockingQueue Queue ;
-
     private JdbcFetch loader;
-
 
     public Producer(BlockingQueue queue,JdbcFetch loader) {
         this.Queue=queue;
         this.loader=loader;
     }
-
 
     public void run(){
         while(true){
@@ -57,12 +50,10 @@ class Producer extends Thread{
     private void produce() {
         try {
            List<Message> messages= loader.FetchData();
-            System.out.println(messages.size() + " size");
            for(Message msg:messages) {
                Queue.put(msg);
-
                System.out.println(msg.getMsg() + " Produced");
-               Thread.sleep(10000);
+               Thread.sleep(5000);
            }
 
         }
@@ -74,22 +65,15 @@ class Producer extends Thread{
         }
     }
 
-
 }
 
 
-
 class messageConsumer extends  Thread{
-//    public messageConsumer() {
-//    }
-
 
 
     private  BlockingQueue Queue;
     private messageService service;
-
     Logger logger = LoggerFactory.getLogger(messageConsumer.class);
-
     private RestTemplate restTemplate;
 
     public static byte[] getParamsByte(Map<String, Object> params) {
@@ -130,7 +114,6 @@ class messageConsumer extends  Thread{
 
             try {
                 msg = (Message) Queue.poll(2000, TimeUnit.DAYS);
-
                 Gson gson = new Gson();
                 URL url = null;
                 HttpURLConnection con = null;
@@ -152,11 +135,8 @@ class messageConsumer extends  Thread{
 
                 HashMap<String, String> message = new HashMap<String, String>();
 
-
-
                 message.put("type", "text");
                 message.put("text", msg.getMsg());
-
 
                 String jsonString = gson.toJson(message);
                 JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
@@ -203,9 +183,7 @@ class messageConsumer extends  Thread{
 
 
 
-
 @Component
-
 public class messageScheduler implements CommandLineRunner{
     @Autowired
   private BlockingQueue Queue;

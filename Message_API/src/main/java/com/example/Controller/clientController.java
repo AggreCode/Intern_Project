@@ -45,7 +45,7 @@ public class clientController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User with that username already exists.");
 
         Client client= new Client();
-        client.setClient_id(Integer.valueOf(req.get("client_id")));
+//        client.setClient_id(Integer.valueOf(req.get("client_id")));
         client.setClient_name(req.get("client_name"));
         client.setUsername(req.get("username"));
         client.setPassword(passwordEncoder.encode(req.get("password")));

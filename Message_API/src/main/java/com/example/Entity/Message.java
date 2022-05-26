@@ -16,7 +16,6 @@ public class Message {
     @NotNull(message = "id is absent")
     private  Integer msg_id;
 
-
     @NotBlank(message = "please write the message")
     private String msg;
 
@@ -32,22 +31,12 @@ public class Message {
     @Pattern(regexp = "^[6789]\\d{9}$",message = "invalid phoneno")
     private String receiver_phoneno;
 
-
-
-
+    @OneToOne(targetEntity = Status.class)
+    @JoinColumn(name = "status_id", referencedColumnName = "status_id")
     private Integer status_id;
-
-
-
-
     private String gupshup_api_id;
 
     private LocalDateTime sent_time;
-
-
-
-
-
 
 
     public Message() {
