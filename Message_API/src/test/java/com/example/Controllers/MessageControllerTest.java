@@ -51,7 +51,7 @@ public class MessageControllerTest {
     @Autowired
     private MockMvc mvc;
     @MockBean
-    private  clientService c_service;
+    private  clientService cService;
 
     @MockBean
     private clientRepository clientRepo;
@@ -61,7 +61,6 @@ public class MessageControllerTest {
 
     @Autowired
     public  ObjectMapper objectMapper;
-    private String token="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaXN3YTIiLCJpYXQiOjE2NTM1ODM1OTIsImV4cCI6MTY1MzY2OTk5Mn0.lcXVU5vC5x1Ic_pEnAYeCOZ0wXGx8L6rlXAwwKlAstWwpWIL0bU-lbdWfoO_TT__gpvgGhrqMnIc-fmNvrx9xQ";
 
     Gson gson=new Gson();
 
@@ -73,7 +72,7 @@ public class MessageControllerTest {
 
         message.put("msg_id", "123456");
         message.put( "msg", "Hey Biswajit3");
-        message.put( "sending_time","2022-05-27 10:05:34");
+        message.put( "sending_time","2022-05-27 13:05:34");
         message.put( "client_id", "12");
         message.put(  "receiver_phoneno", "9692223942");
 
@@ -82,7 +81,7 @@ public class MessageControllerTest {
         log.info("Test with Valid Request");
 
         when(jwtUtils.validateJwtToken("xyz")).thenReturn(true);
-        when(c_service.findById(12)).thenReturn(true);
+        when(cService.findById(12)).thenReturn(true);
 
         MvcResult result=mvc.perform(post("/api/messages")
                         .header("Authorization","Bearer xyz")
@@ -101,7 +100,7 @@ public class MessageControllerTest {
 
         message.put("msg_id", "123456");
         message.put( "msg", "Hey Biswajit3");
-        message.put( "sending_time","2022-05-27 10:05:34");
+        message.put( "sending_time","2022-05-27 12:05:34");
         message.put( "client_id", "12");
         message.put(  "receiver_phoneno", "1692223942");
 
@@ -110,7 +109,7 @@ public class MessageControllerTest {
         log.info("Test with wrong phone no");
 
         when(jwtUtils.validateJwtToken("xyz")).thenReturn(true);
-        when(c_service.findById(12)).thenReturn(true);
+        when(cService.findById(12)).thenReturn(true);
 
         MvcResult result=mvc.perform(post("/api/messages")
                         .header("Authorization","Bearer xyz")
@@ -138,7 +137,7 @@ public class MessageControllerTest {
         log.info("Test with a wrong Date format");
 
         when(jwtUtils.validateJwtToken("xyz")).thenReturn(true);
-        when(c_service.findById(12)).thenReturn(true);
+        when(cService.findById(12)).thenReturn(true);
 
         MvcResult result=mvc.perform(post("/api/messages")
                         .header("Authorization","Bearer xyz")
@@ -159,7 +158,7 @@ public class MessageControllerTest {
         log.info("Test with a old Date");
 
         when(jwtUtils.validateJwtToken("xyz")).thenReturn(true);
-        when(c_service.findById(12)).thenReturn(true);
+        when(cService.findById(12)).thenReturn(true);
 
         result=mvc.perform(post("/api/messages")
                         .header("Authorization","Bearer xyz")
